@@ -8,7 +8,7 @@ const total = positiveNumbers.reduce((sum, currentNumber) => {
 }, 0);
 
 // console.log(positiveNumbers);
-// console.log(total);
+console.log(total);
 
 // 2) შექმენით მასივი,რომელიც შედგება სტრინგებისგან(რომლებიც შეიძლება განმეორდეს). დაწერეთ კოდი,რომელიც დაითვლის რამდენჯერ მეორდება თითოეული სტრინგი მასივში და დააბრუნებს ობიექტის სახით, მაგ: { a:1 , b: 6, c : 2}
 
@@ -30,7 +30,7 @@ const countAnimals = animals.reduce(
   }),
   {}
 );
-// console.log(countAnimals);
+console.log(countAnimals);
 
 // 3) შექმენით კლასი car, რომელსაც ექნება 4 ფროფერთი (brand,model, speed,motion).  ბრენდი და მოდელი კლასს კონსტრუქტორში გადაეცემა, ხოლო speed კონსტრუქტორში დიფოლტად ინიციალიზდება და მისი მნიშვნელობა არის 0.ასევე დიფოლტად ინიციალიზდება motion,რომლის საწყისი მნიშვნელობაა “The car is not moving”.
 // კლასს უნდა ჰქონდეს შემდეგი მეთოდები:
@@ -50,52 +50,43 @@ class Car {
     this.brand = brand;
     this.model = model;
     this.speed = 0;
-    this.motion = "The car is not moving";
+    this.motion = "მანქანა არ მოძრაობს";
+  }
+
+  checkMotion() {
+    if (this.speed > 0) {
+      return "მანქანა მოძრაობს";
+    } else {
+      return this.motion;
+    }
+  }
+
+  accelerate(speed) {
+    this.speed += speed;
+    return this.checkMotion();
+  }
+
+  brake(speed) {
+    this.speed -= speed;
+    return this.checkMotion();
+  }
+
+  emergencyBrake() {
+    return 0;
+  }
+
+  status() {
+    return `მანქანა ${this.brand} ${this.model} მოძრაობს ${
+      this.speed
+    } კმ/სთ სიჩქარით და სტატუსია: ${this.checkMotion()}`;
   }
 }
 
-// class Car {
-//   constructor(name, year, speed, motion) {
-//     this.name = name;
-//     this.year = year;
-//   }
-
-//   print = () => {
-//     console.log(`This is ${this.name}, which is released in ${this.year}`);
-//   };
-
-//   static sayHi() {
-//     console.log("hello world");
-//   }
-// }
-
-// const car1 = new Car("Ford", 2014);
-// const car2 = new Car("range-rover", 2020);
-
-// console.log(car1, car2);
-// car1.print();
-// car2.print();
-
-// Car.sayHi();
-
-// class Car {
-//   constructor(name) {
-//     this._name = name;
-//   }
-
-//   get name() {
-//     return this._name;
-//   }
-
-//   set name(newName) {
-//     this._name = newName;
-//   }
-// }
-
-// const car1 = new Car("Ford");
-// console.log(car1.name);
-// car1.name = "tesla";
-// console.log(car1.name);
+const car1 = new Car("Ford", "Mustang");
+console.log(car1.status());
+// console.log(car1.accelerate(10));
+// console.log(car1.brake(20));
+// console.log(car1.emergencyBrake());
 
 // 4) შექმენით ფუნქცია addAsync,რომელიც იღებს ორ პარამეტრს და აბრუნებს პრომისს. თუ ორივე პარამეტრი გადაეცემა(undefined არ არის და ორივე პარამეტრი რიცხვია) პრომისი უნდა დარიზოლვდეს(resolve), წინააღმდეგ შემთხვევაში დარიჯექთდეს(reject). გამოიძახეთ ფუნქცია რამდენიმეჯერ, სხვადასხვა პარამეტრით და კონსოლში გამოიტანეთ შედეგი.
 
